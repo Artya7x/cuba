@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Explore Cuba - A Virtual Journey</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: url('https://i.natgeofe.com/k/aa6b33ec-2bdd-4024-af81-313de8f8d560/cuba-havana.jpg?wp=1&w=1084.125&h=609') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* 🌐 Language Translator */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .language-switcher button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #ff6f61;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        .language-switcher button:hover {
+            background: #e85b50;
+        }
+
+        /* 🌟 Welcome Screen */
+        .welcome-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            display: block;
+            z-index: 100;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 📜 Intro Text */
+        .intro-text {
+            font-size: 1.1em;
+            text-align: center;
+            white-space: pre-line;
+            min-height: 100px;
+            line-height: 1.6;
+        }
+
+        /* 🚀 Centered Start Button */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .start-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: #ff6f61;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .start-button:hover {
+            background: #e85b50;
+            transform: translateY(-2px);
+        }
+
+        /* 📍 Carlos Speech Bubble */
+        .speech-bubble {
+            position: absolute;
+            bottom: 30%; /* Adjusted to be closer to Carlos */
+            left: 12%; /* Adjusted to be closer to the image */
+            background: white;
+            color: black;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1em;
+            width: 280px;
+            display: none;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 101;
+        }
+
+        /* Speech bubble tail */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+
+        /* 🤵 Carlos (The Guide) */
+        .carlos {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            width: 150px; /* Adjusted size */
+            height: 150px; /* Adjusted size */
+            background: url('https://static.vecteezy.com/system/resources/previews/020/460/386/non_2x/avatar-of-a-cuba-character-free-vector.jpg') no-repeat center center; /* Updated image */
+            background-size: contain; /* Ensure the image fits well */
+            display: none;
+            animation: float 3s infinite ease-in-out;
+            z-index: 102;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* 🌎 Location Menu */
+        .menu {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu button {
+            padding: 12px 24px;
+            font-size: 1.1em;
+            background: #ff6f61;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 8px;
+            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu button:hover {
+            background: #e85b50;
+            transform: translateY(-2px);
+        }
+
+        /* 🎥 A-Frame Scene */
+        a-scene {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        /* ℹ️ More Info Button */
+        .more-info {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            background: #ff6f61;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+        .more-info:hover {
+            background: #e85b50;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌐 Language Translator -->
+    <div class="language-switcher">
+        <button onclick="switchLanguage('en')">🇺🇸 English</button>
+        <button onclick="switchLanguage('es')">🇪🇸 Español</button>
+    </div>
+
+    <!-- 🌟 Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <h1 id="welcomeTitle">Explore Cuba</h1>
+        <p class="intro-text" id="introText">Welcome to the Virtual Cuba Tour.<br>You'll explore stunning places and learn fun facts.<br>If you love what you see... Imagine actually being there!</p>
+        <div class="button-container">
+            <button class="start-button" id="startButton" onclick="startExplore()">Start Exploring</button>
+        </div>
+    </div>
+
+    <!-- 🤵 Carlos (Guide) -->
+    <div class="carlos" id="carlos"></div>
+    <div class="speech-bubble" id="speechBubble"></div>
+
+    <!-- 🌎 Location Menu -->
+    <div class="menu" id="menu">
+        <h3 id="menuTitle">Explore Cuba</h3>
+        <button onclick="changeLocation('catedral')" id="catedralBtn">Plaza de la Catedral</button>
+        <button onclick="changeLocation('varadero')" id="varaderoBtn">Varadero</button>
+        <button onclick="changeLocation('trinidad')" id="trinidadBtn">Plaza Mayor, Trinidad</button>
+        <button onclick="changeLocation('vinales')" id="vinalesBtn">Viñales Valley</button>
+    </div>
+
+    <!-- 🎥 A-Frame Scene -->
+    <a-scene id="scene" style="display: none;">
+        <a-sky id="sky" rotation="0 -90 0"></a-sky>
+        <a-entity light="type: ambient; color: #FFF; intensity: 0.7"></a-entity>
+        <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-1 1 -1"></a-entity>
+        <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+    </a-scene>
+
+    <!-- ℹ️ More Info Button -->
+    <button class="more-info" id="moreInfo" onclick="window.open('https://www.visitcuba.com', '_blank')">More Info</button>
+
+    <script>
+        const locations = {
+            catedral: {
+                img: "https://lh3.googleusercontent.com/p/AF1QipPGkE_7yXjZ4O1nSspv2i3jYYk02CDy05cWlNkv=w4096-h2048-k-no",
+                fact: { en: "Plaza de la Catedral – One of Havana's most historic squares!", es: "Plaza de la Catedral – ¡Una de las plazas más históricas de La Habana!" }
+            },
+            varadero: {
+                img: "https://lh3.googleusercontent.com/p/AF1QipPvx9osI8QzB5FyFKlun9Ne9RGukYy11094iiLi=w4096-h2048-k-no",
+                fact: { en: "Varadero Beach – A white sand paradise with crystal-clear waters.", es: "Playa Varadero – Un paraíso de arena blanca y aguas cristalinas." }
+            },
+            trinidad: {
+                img: "https://lh3.googleusercontent.com/p/AF1QipPFKBKR1jX4H8Rh2tZffj42yrwVGLPeYzy_boZJ=w4096-h2048-k-no",
+                fact: { en: "Plaza Mayor, Trinidad – A UNESCO World Heritage site with rich history.", es: "Plaza Mayor, Trinidad – Un sitio Patrimonio de la Humanidad con una rica historia." }
+            },
+            vinales: {
+                img: "https://lh3.googleusercontent.com/p/AF1QipPMNde8ZXPfav65R_ArhtJN8M16pMYkMPPUKf66=w4096-h2048-k-no",
+                fact: { en: "Viñales Valley – Known for breathtaking landscapes and tobacco farms.", es: "Valle de Viñales – Conocido por sus impresionantes paisajes y plantaciones de tabaco." }
+            }
+        };
+
+        let currentLanguage = 'en'; // Default language
+
+        function startExplore() {
+            document.getElementById("welcomeScreen").style.display = "none";
+            document.getElementById("menu").style.display = "block";
+            document.getElementById("scene").style.display = "block";
+            document.getElementById("carlos").style.display = "block";
+            document.getElementById("speechBubble").style.display = "block";
+            document.getElementById("moreInfo").style.display = "block";
+
+            // Load the first location immediately
+            changeLocation('catedral');
+
+            // Show instructions
+            showMessage(currentLanguage === 'en'
+                ? "Hi! I'm Carlos, your guide. Use the mouse to look around and the arrow keys to move. Choose a location from the menu below to explore!"
+                : "¡Hola! Soy Carlos, tu guía. Usa el ratón para mirar alrededor y las flechas para moverte. ¡Elige un lugar del menú para explorar!");
+        }
+
+        function changeLocation(location) {
+            document.getElementById("sky").setAttribute("src", locations[location].img);
+            showMessage(locations[location].fact[currentLanguage]);
+        }
+
+        function showMessage(message) {
+            const speechBubble = document.getElementById("speechBubble");
+            speechBubble.textContent = message;
+            speechBubble.style.display = "block";
+        }
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            updateTexts();
+        }
+
+        function updateTexts() {
+            // Update welcome screen
+            document.getElementById("welcomeTitle").textContent = currentLanguage === 'en' ? "Explore Cuba" : "Explora Cuba";
+            document.getElementById("introText").textContent = currentLanguage === 'en'
+                ? "Welcome to the Virtual Cuba Tour.\nYou'll explore stunning places and learn fun facts.\nIf you love what you see... Imagine actually being there!"
+                : "Bienvenido al Tour Virtual de Cuba.\nExplorarás lugares impresionantes y aprenderás datos curiosos.\nSi te encanta lo que ves... ¡Imagina estar allí en persona!";
+
+            // Update start button
+            document.getElementById("startButton").textContent = currentLanguage === 'en' ? "Start Exploring" : "Comenzar Exploración";
+
+            // Update menu
+            document.getElementById("menuTitle").textContent = currentLanguage === 'en' ? "Explore Cuba" : "Explora Cuba";
+            document.getElementById("catedralBtn").textContent = currentLanguage === 'en' ? "Plaza de la Catedral" : "Plaza de la Catedral";
+            document.getElementById("varaderoBtn").textContent = currentLanguage === 'en' ? "Varadero" : "Varadero";
+            document.getElementById("trinidadBtn").textContent = currentLanguage === 'en' ? "Plaza Mayor, Trinidad" : "Plaza Mayor, Trinidad";
+            document.getElementById("vinalesBtn").textContent = currentLanguage === 'en' ? "Viñales Valley" : "Valle de Viñales";
+
+            // Update more info button
+            document.getElementById("moreInfo").textContent = currentLanguage === 'en' ? "More Info" : "Más Información";
+        }
+    </script>
+
+</body>
+</html>
