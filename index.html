@@ -15,7 +15,7 @@
             background-size: cover;
         }
 
-        /* 🌐 Language Translator */
+        /*  Language Translator */
         .language-switcher {
             position: absolute;
             top: 20px;
@@ -37,7 +37,7 @@
             background: #e85b50;
         }
 
-        /* 🌟 Welcome Screen */
+        /* Welcome Screen */
         .welcome-screen {
             position: absolute;
             top: 50%;
@@ -65,7 +65,7 @@
             line-height: 1.6;
         }
 
-        /* 🚀 Centered Start Button */
+        /*  Centered Start Button */
         .button-container {
             display: flex;
             justify-content: center;
@@ -87,7 +87,7 @@
             transform: translateY(-2px);
         }
 
-        /* 📍 Carlos Speech Bubble */
+        /*  Carlos Speech Bubble */
         .speech-bubble {
             position: absolute;
             bottom: 30%; /* Adjusted to be closer to Carlos */
@@ -116,7 +116,7 @@
             border-top: 10px solid white;
         }
 
-        /* 🤵 Carlos (The Guide) */
+        /*  Carlos */
         .carlos {
             position: absolute;
             bottom: 10%;
@@ -179,7 +179,7 @@
             z-index: 10;
         }
 
-        /* ℹ️ More Info Button */
+        /* ℹ More Info Button */
         .more-info {
             position: absolute;
             bottom: 20px;
@@ -199,17 +199,230 @@
             background: #e85b50;
             transform: translateY(-2px);
         }
+
+        /*  Responsive Adjustments for Smaller Devices */
+        @media (max-width: 768px) {
+            /* Welcome Screen */
+            .welcome-screen {
+                padding: 20px;
+                font-size: 1em;
+                width: 90%;
+            }
+
+            .intro-text {
+                font-size: 1em;
+            }
+
+            .start-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            /* Carlos and Speech Bubble */
+            .carlos {
+                width: 100px;
+                height: 100px;
+                bottom: 5%;
+                left: 2%;
+            }
+
+            .speech-bubble {
+                width: 200px;
+                font-size: 0.9em;
+                bottom: 20%;
+                left: 5%;
+            }
+
+            /* Menu */
+            .menu {
+                padding: 10px;
+                width: 90%;
+            }
+
+            .menu button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                margin: 5px;
+            }
+
+            /* More Info Button */
+            .more-info {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Welcome Screen */
+            .welcome-screen {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+
+            .intro-text {
+                font-size: 0.9em;
+            }
+
+            .start-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            /* Carlos and Speech Bubble */
+            .carlos {
+                width: 80px;
+                height: 80px;
+                bottom: 3%;
+                left: 1%;
+            }
+
+            .speech-bubble {
+                width: 150px;
+                font-size: 0.8em;
+                bottom: 15%;
+                left: 3%;
+            }
+
+            /* Menu */
+            .menu {
+                padding: 8px;
+                width: 95%;
+            }
+
+            .menu button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                margin: 4px;
+            }
+
+            /* More Info Button */
+            .more-info {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                bottom: 5px;
+                right: 5px;
+            }
+            
+        /*  Responsive Adjustments for Smaller Devices */
+        @media (max-width: 768px) {
+            /* Welcome Screen */
+            .welcome-screen {
+                padding: 20px;
+                font-size: 1em;
+                width: 90%;
+            }
+
+            .intro-text {
+                font-size: 1em;
+            }
+
+            .start-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            /* Carlos and Speech Bubble */
+            .carlos {
+                width: 100px;
+                height: 100px;
+                bottom: 5%;
+                left: 2%;
+            }
+
+            .speech-bubble {
+                width: 200px;
+                font-size: 0.9em;
+                bottom: 20%;
+                left: 5%;
+            }
+
+            /* Menu */
+            .menu {
+                padding: 10px;
+                width: 90%;
+            }
+
+            .menu button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                margin: 5px;
+            }
+
+            /* More Info Button */
+            .more-info {
+                padding: 8px 16px;
+                font-size: 0.9em;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Welcome Screen */
+            .welcome-screen {
+                padding: 15px;
+                font-size: 0.9em;
+            }
+
+            .intro-text {
+                font-size: 0.9em;
+            }
+
+            .start-button {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+
+            /* Carlos and Speech Bubble */
+            .carlos {
+                width: 80px;
+                height: 80px;
+                bottom: 3%;
+                left: 1%;
+            }
+
+            .speech-bubble {
+                width: 150px;
+                font-size: 0.8em;
+                bottom: 15%;
+                left: 3%;
+            }
+
+            /* Menu */
+            .menu {
+                padding: 8px;
+                width: 95%;
+            }
+
+            .menu button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                margin: 4px;
+            }
+
+            /* More Info Button */
+            .more-info {
+                padding: 6px 12px;
+                font-size: 0.8em;
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+        
+        }
     </style>
 </head>
 <body>
 
-    <!-- 🌐 Language Translator -->
+    <!--  Language Translator -->
     <div class="language-switcher">
         <button onclick="switchLanguage('en')">🇺🇸 English</button>
         <button onclick="switchLanguage('es')">🇪🇸 Español</button>
     </div>
 
-    <!-- 🌟 Welcome Screen -->
+    <!--  Welcome Screen -->
     <div class="welcome-screen" id="welcomeScreen">
         <h1 id="welcomeTitle">Explore Cuba</h1>
         <p class="intro-text" id="introText">Welcome to the Virtual Cuba Tour.<br>You'll explore stunning places and learn fun facts.<br>If you love what you see... Imagine actually being there!</p>
@@ -218,11 +431,11 @@
         </div>
     </div>
 
-    <!-- 🤵 Carlos (Guide) -->
+    <!--  Carlos (Guide) -->
     <div class="carlos" id="carlos"></div>
     <div class="speech-bubble" id="speechBubble"></div>
 
-    <!-- 🌎 Location Menu -->
+    <!-- Location Menu -->
     <div class="menu" id="menu">
         <h3 id="menuTitle">Explore Cuba</h3>
         <button onclick="changeLocation('catedral')" id="catedralBtn">Plaza de la Catedral</button>
@@ -231,7 +444,7 @@
         <button onclick="changeLocation('vinales')" id="vinalesBtn">Viñales Valley</button>
     </div>
 
-    <!-- 🎥 A-Frame Scene -->
+    <!--  A-Frame Scene -->
     <a-scene id="scene" style="display: none;">
         <a-sky id="sky" rotation="0 -90 0"></a-sky>
         <a-entity light="type: ambient; color: #FFF; intensity: 0.7"></a-entity>
@@ -239,7 +452,7 @@
         <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
     </a-scene>
 
-    <!-- ℹ️ More Info Button -->
+    <!-- ℹ More Info Button -->
     <button class="more-info" id="moreInfo" onclick="window.open('https://www.visitcuba.com', '_blank')">More Info</button>
 
     <script>
@@ -287,15 +500,35 @@
         }
 
         function showMessage(message) {
-            const speechBubble = document.getElementById("speechBubble");
-            speechBubble.textContent = message;
-            speechBubble.style.display = "block";
-        }
+    const speechBubble = document.getElementById("speechBubble");
+    speechBubble.textContent = message;
+    speechBubble.style.display = "block";
+}
 
-        function switchLanguage(lang) {
-            currentLanguage = lang;
-            updateTexts();
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    updateTexts();
+
+    // If Carlos' speech bubble is visible, update it in the selected language
+    const speechBubble = document.getElementById("speechBubble");
+    if (speechBubble.style.display === "block") {
+        // Check if it's the initial greeting or a location fact
+        if (speechBubble.textContent.includes("Hi!") || speechBubble.textContent.includes("¡Hola!")) {
+            showMessage(currentLanguage === 'en'
+                ? "Hi! I'm Carlos, your guide. Use the mouse to look around and the arrow keys to move. Choose a location from the menu below to explore!"
+                : "¡Hola! Soy Carlos, tu guía. Usa el ratón para mirar alrededor y las flechas para moverte. ¡Elige un lugar del menú para explorar!");
+        } else {
+            // Update fact for the current location
+            const skyElement = document.getElementById("sky");
+            for (let loc in locations) {
+                if (locations[loc].img === skyElement.getAttribute("src")) {
+                    showMessage(locations[loc].fact[currentLanguage]);
+                    break;
+                }
+            }
         }
+    }
+}
 
         function updateTexts() {
             // Update welcome screen
