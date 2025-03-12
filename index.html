@@ -5,6 +5,7 @@
     <title>Explore Cuba - A Virtual Journey</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <style>
+        
         body, html {
             margin: 0;
             padding: 0;
@@ -15,7 +16,9 @@
             background-size: cover;
         }
 
-        /*  Language Translator */
+
+
+        /* 🌐 Language Translator */
         .language-switcher {
             position: absolute;
             top: 20px;
@@ -37,7 +40,7 @@
             background: #e85b50;
         }
 
-        /* Welcome Screen */
+        /* 🌟 Welcome Screen */
         .welcome-screen {
             position: absolute;
             top: 50%;
@@ -65,7 +68,7 @@
             line-height: 1.6;
         }
 
-        /*  Centered Start Button */
+        /* 🚀 Centered Start Button */
         .button-container {
             display: flex;
             justify-content: center;
@@ -87,7 +90,7 @@
             transform: translateY(-2px);
         }
 
-        /*  Carlos Speech Bubble */
+        /* 📍 Carlos Speech Bubble */
         .speech-bubble {
             position: absolute;
             bottom: 30%; /* Adjusted to be closer to Carlos */
@@ -116,7 +119,7 @@
             border-top: 10px solid white;
         }
 
-        /*  Carlos */
+        /* 🤵 Carlos (The Guide) */
         .carlos {
             position: absolute;
             bottom: 10%;
@@ -179,7 +182,7 @@
             z-index: 10;
         }
 
-        /* ℹ More Info Button */
+        /* ℹ️ More Info Button */
         .more-info {
             position: absolute;
             bottom: 20px;
@@ -199,8 +202,22 @@
             background: #e85b50;
             transform: translateY(-2px);
         }
+        .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 3px 0; /* Reduced padding */
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.75em; /* Smaller text */
+    z-index: 1000;
+    height: 40px; /* Fixed small height */
+    line-height: 20px; /* Center text vertically */
+}
 
-        /*  Responsive Adjustments for Smaller Devices */
+        /* 📱 Responsive Adjustments for Smaller Devices */
         @media (max-width: 768px) {
             /* Welcome Screen */
             .welcome-screen {
@@ -305,7 +322,7 @@
                 right: 5px;
             }
             
-        /*  Responsive Adjustments for Smaller Devices */
+        /* 📱 Responsive Adjustments for Smaller Devices */
         @media (max-width: 768px) {
             /* Welcome Screen */
             .welcome-screen {
@@ -415,14 +432,16 @@
     </style>
 </head>
 <body>
-
-    <!--  Language Translator -->
+    <footer class="footer" id="footer">
+        <p>© 2025 Artemis Photiou</p>
+    </footer>
+    <!-- 🌐 Language Translator -->
     <div class="language-switcher">
         <button onclick="switchLanguage('en')">🇺🇸 English</button>
         <button onclick="switchLanguage('es')">🇪🇸 Español</button>
     </div>
 
-    <!--  Welcome Screen -->
+    <!-- 🌟 Welcome Screen -->
     <div class="welcome-screen" id="welcomeScreen">
         <h1 id="welcomeTitle">Explore Cuba</h1>
         <p class="intro-text" id="introText">Welcome to the Virtual Cuba Tour.<br>You'll explore stunning places and learn fun facts.<br>If you love what you see... Imagine actually being there!</p>
@@ -431,11 +450,11 @@
         </div>
     </div>
 
-    <!--  Carlos (Guide) -->
+    <!-- 🤵 Carlos (Guide) -->
     <div class="carlos" id="carlos"></div>
     <div class="speech-bubble" id="speechBubble"></div>
 
-    <!-- Location Menu -->
+    <!-- 🌎 Location Menu -->
     <div class="menu" id="menu">
         <h3 id="menuTitle">Explore Cuba</h3>
         <button onclick="changeLocation('catedral')" id="catedralBtn">Plaza de la Catedral</button>
@@ -444,7 +463,7 @@
         <button onclick="changeLocation('vinales')" id="vinalesBtn">Viñales Valley</button>
     </div>
 
-    <!--  A-Frame Scene -->
+    <!-- 🎥 A-Frame Scene -->
     <a-scene id="scene" style="display: none;">
         <a-sky id="sky" rotation="0 -90 0"></a-sky>
         <a-entity light="type: ambient; color: #FFF; intensity: 0.7"></a-entity>
@@ -452,8 +471,8 @@
         <a-entity id="camera" camera look-controls wasd-controls position="0 1.6 0"></a-entity>
     </a-scene>
 
-    <!-- ℹ More Info Button -->
-    <button class="more-info" id="moreInfo" onclick="window.open('https://www.visitcuba.com', '_blank')">More Info</button>
+    <!-- ℹ️ More Info Button -->
+    <button class="more-info" id="moreInfo" onclick="window.open('https://sotirisfrost.github.io/cuba/', '_blank')">More Info</button>
 
     <script>
         const locations = {
@@ -484,7 +503,7 @@
             document.getElementById("carlos").style.display = "block";
             document.getElementById("speechBubble").style.display = "block";
             document.getElementById("moreInfo").style.display = "block";
-
+            document.getElementById("footer").style.display = "none"; // Hide footer
             // Load the first location immediately
             changeLocation('catedral');
 
@@ -553,4 +572,5 @@ function switchLanguage(lang) {
     </script>
 
 </body>
+
 </html>
