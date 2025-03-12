@@ -5,430 +5,340 @@
     <title>Explore Cuba - A Virtual Journey</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <style>
-        
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: url('https://i.natgeofe.com/k/aa6b33ec-2bdd-4024-af81-313de8f8d560/cuba-havana.jpg?wp=1&w=1084.125&h=609') no-repeat center center fixed;
-            background-size: cover;
-        }
+      /* General Reset */
+/* General Reset */
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    background: url('https://i.natgeofe.com/k/aa6b33ec-2bdd-4024-af81-313de8f8d560/cuba-havana.jpg?wp=1&w=1084.125&h=609') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
 
+/* 🌐 Language Translator */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
 
+.language-switcher button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        /* 🌐 Language Translator */
-        .language-switcher {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .language-switcher button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background: #ff6f61;
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 5px;
-            transition: background 0.3s;
-        }
-        .language-switcher button:hover {
-            background: #e85b50;
-        }
+.language-switcher button:hover {
+    background: #e85b50;
+    transform: translateY(-2px);
+}
 
-        /* 🌟 Welcome Screen */
-        .welcome-screen {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 15px;
-            font-size: 1.2em;
-            display: block;
-            z-index: 100;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
+/* 🌟 Welcome Screen */
+.welcome-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    display: block;
+    z-index: 100;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
 
-        /* 📜 Intro Text */
-        .intro-text {
-            font-size: 1.1em;
-            text-align: center;
-            white-space: pre-line;
-            min-height: 100px;
-            line-height: 1.6;
-        }
+.welcome-screen h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ff6f61;
+}
 
-        /* 🚀 Centered Start Button */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .start-button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background: #ff6f61;
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        .start-button:hover {
-            background: #e85b50;
-            transform: translateY(-2px);
-        }
+.intro-text {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
 
-        /* 📍 Carlos Speech Bubble */
-        .speech-bubble {
-            position: absolute;
-            bottom: 30%; /* Adjusted to be closer to Carlos */
-            left: 12%; /* Adjusted to be closer to the image */
-            background: white;
-            color: black;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1em;
-            width: 280px;
-            display: none;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 101;
-        }
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-        /* Speech bubble tail */
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 20px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 10px solid white;
-        }
+.start-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        /* 🤵 Carlos (The Guide) */
-        .carlos {
-            position: absolute;
-            bottom: 10%;
-            left: 5%;
-            width: 150px; /* Adjusted size */
-            height: 150px; /* Adjusted size */
-            background: url('https://static.vecteezy.com/system/resources/previews/020/460/386/non_2x/avatar-of-a-cuba-character-free-vector.jpg') no-repeat center center; /* Updated image */
-            background-size: contain; /* Ensure the image fits well */
-            display: none;
-            animation: float 3s infinite ease-in-out;
-            z-index: 102;
-        }
+.start-button:hover {
+    background: #e85b50;
+    transform: translateY(-2px);
+}
 
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0); }
-        }
+/* 📍 Carlos Speech Bubble */
+.speech-bubble {
+    position: absolute;
+    bottom: 30%;
+    left: 12%;
+    background: white;
+    color: #333;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 1em;
+    width: 280px;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 101;
+    backdrop-filter: blur(5px);
+}
 
-        /* 🌎 Location Menu */
-        .menu {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 15px;
-            color: white;
-            display: none;
-            z-index: 100;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
 
-        .menu button {
-            padding: 12px 24px;
-            font-size: 1.1em;
-            background: #ff6f61;
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 8px;
-            margin: 8px;
-            transition: background 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+/* 🤵 Carlos (The Guide) */
+.carlos {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    background: url('https://static.vecteezy.com/system/resources/previews/020/460/386/non_2x/avatar-of-a-cuba-character-free-vector.jpg') no-repeat center center;
+    background-size: contain;
+    display: none;
+    animation: float 3s infinite ease-in-out;
+    z-index: 102;
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
-        .menu button:hover {
-            background: #e85b50;
-            transform: translateY(-2px);
-        }
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
 
-        /* 🎥 A-Frame Scene */
-        a-scene {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-        }
+/* 🌎 Location Menu */
+.menu {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 20px;
+    color: #333;
+    display: none;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
 
-        /* ℹ️ More Info Button */
-        .more-info {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 24px;
-            font-size: 1.1em;
-            background: #ff6f61;
-            border: none;
-            color: white;
-            cursor: pointer;
-            border-radius: 8px;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s;
-        }
-        .more-info:hover {
-            background: #e85b50;
-            transform: translateY(-2px);
-        }
-        .footer {
+.menu h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #ff6f61;
+    text-align: center;
+}
+
+.menu button {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    background: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 8px;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu button:hover {
+    background: #e85b50;
+    transform: translateY(-2px);
+}
+
+/* 🎥 A-Frame Scene */
+a-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* ℹ️ More Info Button */
+.more-info {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    background: #ff6f61;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 25px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.more-info:hover {
+    background: #e85b50;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
-    padding: 3px 0; /* Reduced padding */
+    padding: 10px 0;
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    font-size: 0.75em; /* Smaller text */
+    font-size: 0.9em;
     z-index: 1000;
-    height: 40px; /* Fixed small height */
-    line-height: 20px; /* Center text vertically */
 }
 
-        /* 📱 Responsive Adjustments for Smaller Devices */
-        @media (max-width: 768px) {
-            /* Welcome Screen */
-            .welcome-screen {
-                padding: 20px;
-                font-size: 1em;
-                width: 90%;
-            }
+/* 📱 Responsive Adjustments for Smaller Devices */
+@media (max-width: 768px) {
+    .welcome-screen {
+        padding: 20px;
+        font-size: 1em;
+        width: 90%;
+    }
 
-            .intro-text {
-                font-size: 1em;
-            }
+    .intro-text {
+        font-size: 1em;
+    }
 
-            .start-button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
+    .start-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
 
-            /* Carlos and Speech Bubble */
-            .carlos {
-                width: 100px;
-                height: 100px;
-                bottom: 5%;
-                left: 2%;
-            }
+    .carlos {
+        width: 100px;
+        height: 100px;
+        bottom: 5%;
+        left: 2%;
+    }
 
-            .speech-bubble {
-                width: 200px;
-                font-size: 0.9em;
-                bottom: 20%;
-                left: 5%;
-            }
+    .speech-bubble {
+        width: 200px;
+        font-size: 0.9em;
+        bottom: 20%;
+        left: 5%;
+    }
 
-            /* Menu */
-            .menu {
-                padding: 10px;
-                width: 90%;
-            }
+    .menu {
+        padding: 10px;
+        width: 90%;
+    }
 
-            .menu button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                margin: 5px;
-            }
+    .menu button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+        margin: 5px;
+    }
 
-            /* More Info Button */
-            .more-info {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
+    .more-info {
+        padding: 8px 16px;
+        font-size: 0.9em;
+        bottom: 10px;
+        right: 10px;
+    }
+}
 
-        @media (max-width: 480px) {
-            /* Welcome Screen */
-            .welcome-screen {
-                padding: 15px;
-                font-size: 0.9em;
-            }
+@media (max-width: 480px) {
+    .welcome-screen {
+        padding: 15px;
+        font-size: 0.9em;
+    }
 
-            .intro-text {
-                font-size: 0.9em;
-            }
+    .intro-text {
+        font-size: 0.9em;
+    }
 
-            .start-button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-            }
+    .start-button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
 
-            /* Carlos and Speech Bubble */
-            .carlos {
-                width: 80px;
-                height: 80px;
-                bottom: 3%;
-                left: 1%;
-            }
+    .carlos {
+        width: 80px;
+        height: 80px;
+        bottom: 3%;
+        left: 1%;
+    }
 
-            .speech-bubble {
-                width: 150px;
-                font-size: 0.8em;
-                bottom: 15%;
-                left: 3%;
-            }
+    .speech-bubble {
+        width: 150px;
+        font-size: 0.8em;
+        bottom: 15%;
+        left: 3%;
+    }
 
-            /* Menu */
-            .menu {
-                padding: 8px;
-                width: 95%;
-            }
+    .menu {
+        padding: 8px;
+        width: 95%;
+    }
 
-            .menu button {
-                padding: 6px 12px;
-                font-size: 0.8em;
-                margin: 4px;
-            }
+    .menu button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        margin: 4px;
+    }
 
-            /* More Info Button */
-            .more-info {
-                padding: 6px 12px;
-                font-size: 0.8em;
-                bottom: 5px;
-                right: 5px;
-            }
-            
-        /* 📱 Responsive Adjustments for Smaller Devices */
-        @media (max-width: 768px) {
-            /* Welcome Screen */
-            .welcome-screen {
-                padding: 20px;
-                font-size: 1em;
-                width: 90%;
-            }
+    .more-info {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        bottom: 5px;
+        right: 5px;
+    }
+}
 
-            .intro-text {
-                font-size: 1em;
-            }
-
-            .start-button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
-
-            /* Carlos and Speech Bubble */
-            .carlos {
-                width: 100px;
-                height: 100px;
-                bottom: 5%;
-                left: 2%;
-            }
-
-            .speech-bubble {
-                width: 200px;
-                font-size: 0.9em;
-                bottom: 20%;
-                left: 5%;
-            }
-
-            /* Menu */
-            .menu {
-                padding: 10px;
-                width: 90%;
-            }
-
-            .menu button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                margin: 5px;
-            }
-
-            /* More Info Button */
-            .more-info {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            /* Welcome Screen */
-            .welcome-screen {
-                padding: 15px;
-                font-size: 0.9em;
-            }
-
-            .intro-text {
-                font-size: 0.9em;
-            }
-
-            .start-button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-            }
-
-            /* Carlos and Speech Bubble */
-            .carlos {
-                width: 80px;
-                height: 80px;
-                bottom: 3%;
-                left: 1%;
-            }
-
-            .speech-bubble {
-                width: 150px;
-                font-size: 0.8em;
-                bottom: 15%;
-                left: 3%;
-            }
-
-            /* Menu */
-            .menu {
-                padding: 8px;
-                width: 95%;
-            }
-
-            .menu button {
-                padding: 6px 12px;
-                font-size: 0.8em;
-                margin: 4px;
-            }
-
-            /* More Info Button */
-            .more-info {
-                padding: 6px 12px;
-                font-size: 0.8em;
-                bottom: 5px;
-                right: 5px;
-            }
-        }
-        
-        }
     </style>
 </head>
 <body>
@@ -446,7 +356,7 @@
         <h1 id="welcomeTitle">Explore Cuba</h1>
         <p class="intro-text" id="introText">Welcome to the Virtual Cuba Tour.<br>You'll explore stunning places and learn fun facts.<br>If you love what you see... Imagine actually being there!</p>
         <div class="button-container">
-            <button class="start-button" id="startButton" onclick="startExplore()">Start Exploring</button>
+            <button class="start-button" id="startButton" onclick="startExplore()">Start Tour</button>
         </div>
     </div>
 
@@ -557,7 +467,7 @@ function switchLanguage(lang) {
                 : "Bienvenido al Tour Virtual de Cuba.\nExplorarás lugares impresionantes y aprenderás datos curiosos.\nSi te encanta lo que ves... ¡Imagina estar allí en persona!";
 
             // Update start button
-            document.getElementById("startButton").textContent = currentLanguage === 'en' ? "Start Exploring" : "Comenzar Exploración";
+            document.getElementById("startButton").textContent = currentLanguage === 'en' ? "Start Tour" : "Iniciar Tour";
 
             // Update menu
             document.getElementById("menuTitle").textContent = currentLanguage === 'en' ? "Explore Cuba" : "Explora Cuba";
